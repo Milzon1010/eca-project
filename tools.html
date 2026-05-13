@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECA Simulator - Milzon</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f7f6;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h2 { color: #2c3e50; text-align: center; border-bottom: 2px solid #e74c3c; padding-bottom: 10px; }
+        label { font-weight: bold; display: block; margin-top: 15px; color: #2c3e50; }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .btn-calc {
+            display: block;
+            width: 100%;
+            background-color: #27ae60;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-top: 25px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .result-box {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fdf2f2;
+            border-left: 5px solid #e74c3c;
+            border-radius: 5px;
+        }
+        .hidden { display: none; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #3498db; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>ECA Simulator</h2>
+    
+    <label>Nama Lengkap:</label>
+    <input type="text" id="name" placeholder="Contoh: Milzon">
+    
+    <label>Usia Saat Ini:</label>
+    <input type="number" id="age" placeholder="Contoh: 52">
+    
+    <label>Target Dana ECA (Nominal Rupiah):</label>
+    <input type="number" id="target" placeholder="Contoh: 1500000000">
+
+    <!-- Section Kontak yang akan hilang otomatis jika sudah pernah diisi -->
+    <div id="contact-fields">
+        <label>Nomor WhatsApp (Wajib):</label>
+        <input type="tel" id="phone" placeholder="0812xxxxxxxx">
+        
+        <label>Email Address (Wajib):</label>
+        <input type="email" id="email" placeholder="nama@email.com">
+    </div>
+
+    <button onclick="hitungSimulasi()" class="btn-calc">Lihat Hasil Simulasi</button>
+
+    <div id="result" class="result-box">
+        <h3>Hasil Simulasi Untuk <span id="resName" style="color:#e74c3c"></span></h3>
+        <p>Untuk memiliki dana darurat sebesar <strong>Rp <span id="resTarget"></span></strong>:</p>
+        <ul>
+            <li>Estimasi Simpanan Harian: <strong>Rp <span id="resDaily"></span></strong></li>
+            <li>Kepastian Dana: <strong>100% Instant Cash</strong></li>
+        </ul>
+        <p style="font-size: 0.9em; font-style: italic;">*Data simulasi lengkap telah kami siapkan untuk dikirimkan.</p>
+    </div>
+
+    <a href="index.html" class="back-link">← Kembali ke Beranda</a>
+</div>
+
+<script>
+    function hitungSimulasi() {
+        const name = document.getElementById('name').value;
+        const age = document.getElementById('age').value;
+        const target = document.getElementById('target').value;
+        const phone = document.getElementById('phone').value;
+        const email = document.getElementById('email').value;
+
+        // Cek apakah sudah ada data kontak tersimpan
+        const isContactSaved = localStorage.getItem('eca_contact_filled');
+
+        if (!isContactSaved) {
+            if (!name || !age || !target || !phone || !email) {
+                alert("Mohon lengkapi semua data, termasuk WhatsApp dan Email untuk melihat simulasi pertama kali.");
+                return;
+            }
+            // Simpan ke localStorage
+            localStorage.setItem('eca_contact_filled', 'true');
+            localStorage.setItem('eca_user_email', email);
+        } else {
+            if (!name || !age || !target) {
+                alert("Mohon isi Nama, Usia, dan Target Dana.");
+                return;
+            }
+        }
+
+        // Rumus sederhana: Target / 365 hari / (rasio usia)
+        // Milzon bisa sesuaikan rumus ini nanti
+        let daily = (target / 365) / 10; 
+        
+        document.getElementById('resName').innerText = name;
+        document.getElementById('resTarget').innerText = Number(target).toLocaleString('id-ID');
+        document.getElementById('resDaily').innerText = Math.round(daily).toLocaleString('id-ID');
+        
+        document.getElementById('result').style.display = 'block';
+        
+        // Jalankan fungsi sembunyikan input kontak
+        checkStatus();
+    }
+
+    function checkStatus() {
+        if (localStorage.getItem('eca_contact_filled')) {
+            document.getElementById('contact-fields').classList.add('hidden');
+        }
+    }
+
+    // Cek saat halaman dibuka
+    window.onload = checkStatus;
+</script>
+
+</body>
+</html>
