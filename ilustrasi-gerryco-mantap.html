@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ilustrasi Proteksi — Gerryco | Milzon</title>
+<style>
+  :root{
+    --bg:#0b1220;
+    --panel:#111c33;
+    --panel2:#16243f;
+    --ink:#eef3fb;
+    --muted:#9fb0cc;
+    --gold:#d9a441;
+    --gold-soft:#f0c976;
+    --line:rgba(255,255,255,.08);
+    --green:#1ebe7a;
+    --red:#e06262;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:radial-gradient(1200px 600px at 50% -10%,#16243f 0%,var(--bg) 55%);
+    color:var(--ink);
+    line-height:1.6;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    padding:26px 16px 56px;
+  }
+  .wrap{width:100%;max-width:560px}
+
+  .kicker{
+    display:inline-block;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--gold);border:1px solid var(--line);padding:5px 11px;border-radius:999px;margin-bottom:16px;
+  }
+  h1{font-size:25px;line-height:1.28;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
+  h1 .hl{color:var(--gold-soft)}
+  .lede{color:var(--muted);font-size:14.5px;margin-bottom:22px}
+
+  .facts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+  .chip{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:7px 12px;font-size:12.5px;color:var(--muted)}
+  .chip b{color:var(--ink)}
+
+  h2{font-size:16px;margin:26px 0 12px;letter-spacing:.01em}
+  h2 .n{color:var(--gold)}
+
+  /* dua kartu proteksi */
+  .protect{display:grid;gap:12px;margin-bottom:8px}
+  .pcard{
+    background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;
+  }
+  .pcard .top{display:flex;align-items:center;gap:11px;margin-bottom:10px}
+  .pcard .ic{
+    flex:none;width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;
+    background:rgba(217,164,65,.12);border:1px solid rgba(217,164,65,.25);
+  }
+  .pcard h3{font-size:15px}
+  .pcard .up{font-size:24px;font-weight:700;color:var(--gold-soft);margin:2px 0 8px;letter-spacing:-.01em}
+  .pcard p{font-size:13px;color:var(--muted);margin:0}
+  .pcard .badge{font-size:11px;padding:3px 9px;border-radius:999px;font-weight:600;margin-left:auto}
+  .badge-now{background:rgba(30,190,122,.15);color:var(--green)}
+  .badge-wait{background:rgba(217,164,65,.15);color:var(--gold-soft)}
+
+  /* premi box */
+  .premi{
+    background:linear-gradient(135deg,rgba(217,164,65,.12),rgba(217,164,65,.04));
+    border:1px solid rgba(217,164,65,.3);border-radius:16px;padding:20px;margin:14px 0 4px;
+  }
+  .premi .row{display:flex;justify-content:space-between;font-size:13.5px;padding:6px 0;color:var(--muted)}
+  .premi .row b{color:var(--ink)}
+  .premi .total{border-top:1px solid var(--line);margin-top:8px;padding-top:12px;font-size:15px;color:var(--ink)}
+  .premi .total b{color:var(--gold-soft);font-size:20px}
+
+  /* skenario */
+  .ev{
+    display:flex;gap:11px;align-items:flex-start;font-size:13px;
+    background:rgba(30,190,122,.06);border:1px solid rgba(30,190,122,.18);
+    border-radius:12px;padding:13px 14px;margin-bottom:10px;
+  }
+  .ev .ic{flex:none;font-size:17px;line-height:1.3}
+  .ev p{margin:0;color:var(--muted)}
+  .ev p b{color:var(--ink)}
+
+  table{width:100%;border-collapse:collapse;margin:6px 0 4px}
+  th,td{text-align:left;padding:8px 6px;font-size:12.5px;border-bottom:1px solid var(--line)}
+  th{color:var(--muted);font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+  td:last-child,th:last-child{text-align:right}
+  td b{color:var(--gold-soft)}
+  tr:last-child td{border-bottom:none}
+
+  .punch{
+    background:var(--panel);border:1px solid rgba(217,164,65,.3);border-radius:16px;padding:18px;margin:24px 0 8px;
+  }
+  .punch p{font-size:14.5px;color:var(--ink);margin:0;line-height:1.65}
+  .punch .em{color:var(--gold-soft);font-weight:600}
+
+  .honest{
+    background:var(--panel2);border-left:3px solid var(--gold);border-radius:11px;
+    padding:14px 15px;margin-top:18px;font-size:13px;color:var(--muted);line-height:1.6;
+  }
+  .honest b{color:var(--ink)}
+  .honest .h{display:block;color:var(--gold-soft);font-weight:600;margin-bottom:6px;font-size:13px}
+
+  .disc{font-size:11px;color:var(--muted);line-height:1.55;border-top:1px solid var(--line);padding-top:16px;margin-top:26px}
+  .disc b{color:var(--muted)}
+  .sign{text-align:center;margin-top:18px;color:var(--muted);font-size:12.5px}
+  .sign b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <span class="kicker">Ilustrasi · Disiapkan untuk Gerryco (Ogy)</span>
+  <h1>Satu setoran, <span class="hl">dua perisai</span> — buat kau & anak-anak.</h1>
+  <p class="lede">Cok ko tengok angka ini coy. Ini dari ilustrasi resmi MSIG, bukan kira-kira.</p>
+
+  <div class="facts">
+    <span class="chip">Usia <b>53</b></span>
+    <span class="chip">Produk <b>Smile Pro Infinite</b></span>
+    <span class="chip">+ <b>Critical Illness (Basic)</b></span>
+    <span class="chip">Bayar <b>10 tahun</b></span>
+  </div>
+
+  <!-- DUA PROTEKSI -->
+  <h2>Yang kau pegang sejak polis jadi:</h2>
+  <div class="protect">
+    <div class="pcard">
+      <div class="top">
+        <div class="ic">🤍</div>
+        <h3>Kalau terjadi sesuatu (meninggal)</h3>
+        <span class="badge badge-now">aktif hari-1</span>
+      </div>
+      <div class="up">Rp 1 Miliar</div>
+      <p>Langsung dibayar ke ahli waris — anak-anak. Berapapun yang udah kau setor, yang cair tetap penuh Rp 1 M.</p>
+    </div>
+
+    <div class="pcard">
+      <div class="top">
+        <div class="ic">🛡️</div>
+        <h3>Kalau kena penyakit kritis berat</h3>
+        <span class="badge badge-wait">aktif stlh 90 hari</span>
+      </div>
+      <div class="up">Rp 1 Miliar</div>
+      <p>Untuk 76 penyakit kritis tahap major (kanker, stroke berat, serangan jantung berat, gagal ginjal, dll). Dana cair, kau fokus sembuh — bukan mikir biaya.</p>
+    </div>
+  </div>
+
+  <!-- PREMI -->
+  <h2>Setoran per tahun:</h2>
+  <div class="premi">
+    <div class="row"><span>Smile Pro Infinite (jiwa)</span><b>Rp 57.260.820</b></div>
+    <div class="row"><span>Critical Illness (Basic)</span><b>Rp 41.550.000</b></div>
+    <div class="row total"><span>Total / tahun</span><b>Rp 98.810.820</b></div>
+  </div>
+
+  <!-- SKENARIO -->
+  <h2>Coba bayangin di tengah jalan:</h2>
+  <div class="ev">
+    <span class="ic">🛡️</span>
+    <p><b>Tahun ke-3, kena penyakit kritis berat</b> (baru setor ± Rp 296jt) → cair <b>Rp 1 Miliar</b> dari proteksi kritis. Biaya berobat ketutup, anak-anak tetap kuliah.</p>
+  </div>
+  <div class="ev">
+    <span class="ic">🤍</span>
+    <p><b>Tahun ke-3, terjadi sesuatu</b> → ahli waris terima <b>Rp 1 Miliar</b>. Dari setoran ± Rp 296jt, yang diterima keluarga 3x lebih besar.</p>
+  </div>
+  <div class="ev">
+    <span class="ic">🌤️</span>
+    <p><b>Sehat sampai usia 75</b> → kau sendiri terima <b>Rp 1 Miliar</b> (manfaat akhir polis). Nggak hangus.</p>
+  </div>
+
+  <!-- NILAI TUNAI (akurat dari tabel) -->
+  <h2>Nilai tunai yang terbentuk (angka resmi):</h2>
+  <table>
+    <tr><th>Akhir Tahun</th><th>Akumulasi setor</th><th>Nilai tunai*</th></tr>
+    <tr><td>3</td><td>Rp 296jt</td><td>Rp 55jt</td></tr>
+    <tr><td>5</td><td>Rp 494jt</td><td>Rp 107jt</td></tr>
+    <tr><td>10 (lunas)</td><td>Rp 988jt</td><td>Rp 312jt</td></tr>
+    <tr><td>22 (usia 75)</td><td>—</td><td><b>Rp 1 Miliar</b></td></tr>
+  </table>
+
+  <div class="punch">
+    <p>Inti-nya coy: kau setor <span class="em">± Rp 99jt di tahun pertama</span>, tapi yang kau pegang hari itu juga adalah perisai <span class="em">Rp 1 M kalau terjadi sesuatu</span> + <span class="em">Rp 1 M kalau kena kritis berat</span>. Anak-anak nggak ikut beradu nasib kalau kau yang kenapa-kenapa duluan.</p>
+  </div>
+
+  <!-- JUJUR -->
+  <div class="honest">
+    <span class="h">Biar fair, ini yang harus kau tau:</span>
+    • Proteksi <b>penyakit kritis baru aktif setelah 90 hari</b> (masa tunggu) — kecuali karena kecelakaan.<br>
+    • Plan ini <b>Basic</b> — nutup penyakit kritis tahap <b>major (berat)</b>, plus tindakan angioplasti. Belum termasuk tahap minor/intermediate (itu di plan Comprehensive).<br>
+    • <b>Nilai tunai tahun-tahun awal kecil</b> — ini wajar. Kekuatan produk ini di proteksinya yang gede sejak awal, bukan di tabungan cepat cair.
+  </div>
+
+  <p class="disc">
+    *Semua angka dikutip dari RIPLAY Personal MSIG No. 260627.1102.47124.714 (Smile Pro Infinite + Smile Pro Critical Illness Basic), tertanggung gerryco parulian, usia 53. Angka simulasi ini <b>bukan janji/jaminan</b> dan bukan bagian dari Polis — ketentuan final mengikuti Polis yang diterbitkan. Pengajuan tunduk pada proses underwriting MSIG. Berlaku s/d 11 Jul 2026.
+  </p>
+
+  <p class="sign">Disiapkan oleh <b>Milzon</b> · MSIG Financial Advisor · @milzon.latief.fin</p>
+</div>
+</body>
+</html>
